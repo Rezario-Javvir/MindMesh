@@ -1,2 +1,2 @@
 # MindMesh
-Jibi Rpawobo?🧐
+Jibi Rpawobo langhi id mitor etles? Pahkaha narben🧐
