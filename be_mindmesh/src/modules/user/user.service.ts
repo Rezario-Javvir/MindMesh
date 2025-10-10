@@ -1,11 +1,17 @@
-import * as UserRepo from './user.repo.js'
-import { ErrorOutput } from '../../util/output.js'
+import * as UserRepo from './user.repo.ts'
+import { ErrorOutput } from '../../util/Output.ts'
 
-export const find_name = async (username: string): Promise<any> => {
-    const name_user = await UserRepo.find_name_user(username)
+export const find_name = async (partial_name: string): Promise<any> => {
+    const name_user = await UserRepo.find_name_user(partial_name)
 
     if(!name_user) {
-        throw new ErrorOutput('User not found', 404)
+        throw new ErrorOutput("No users found matching the search query.", 404)
     }
+    
     return name_user
+}
+
+export const find_all_user = async (): Promise<any> => {
+    const user = await UserRepo.find_all_user()
+    return user
 }

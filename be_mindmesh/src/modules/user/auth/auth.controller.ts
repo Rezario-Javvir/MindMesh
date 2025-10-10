@@ -1,9 +1,11 @@
 import type { Request, Response, NextFunction } from "express"
-import { ErrorOutput } from "../../../util/output.js"
-import * as AuthService from "./auth.service.js"
+import { ErrorOutput } from "../../../util/Output.ts"
+import * as AuthService from "./auth.service.ts"
+import chalk from "chalk"
 
 export const controller_register = async (req: Request, res: Response, next: NextFunction) => {
     try{
+        console.log(chalk.blueBright("Registering user..."))
         const { username, email, password } = req.body
         if(!username || !email || !password) {
             throw new ErrorOutput("All fields are required", 400)
@@ -11,6 +13,7 @@ export const controller_register = async (req: Request, res: Response, next: Nex
 
         const result = await AuthService.register(username, email, password)
 
+        console.log(chalk.greenBright("User registered successfully"))
         res.status(200).json({
             status: "success",
             message: "Registered Successful",
@@ -24,12 +27,15 @@ export const controller_register = async (req: Request, res: Response, next: Nex
 
 export const controller_login = async (req: Request, res: Response, next: NextFunction) => {
     try {
+        console.log(chalk.blueBright("Logging in user..."))
+
         const { email, password } = req.body
         const result = await AuthService.login(email, password)
         if(!email || !password) {
             throw new ErrorOutput("All fields are required", 400)
         }
 
+        console.log(chalk.greenBright("User logged in successfully"))
         res.status(200).json({
             status: "success",
             message: "Login Successful",

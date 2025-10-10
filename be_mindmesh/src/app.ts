@@ -1,8 +1,8 @@
 import express from 'express'
-import { errorHandler } from './middleware/error.middleware.js'
-import { notFound } from './middleware/notFound.middleware.js'
-import authRoute from "./modules/user/auth/auth.route.js"
-import userRouter from "./modules/user/user.route.js"
+import { errorHandler } from './middleware/error.middleware.ts'
+import { notFound } from './middleware/notFound.middleware.ts'
+import authRoute from "./modules/user/auth/auth.route.ts"
+import userRouter from "./modules/user/user.route.ts"
 
 const app = express()
 

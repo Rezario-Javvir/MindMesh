@@ -1,8 +1,8 @@
 import * as bcrypt from 'bcrypt'
 import jwt from "jsonwebtoken"
-import * as UserRepo from "../user.repo.js"
-import { ErrorOutput } from '../../../util/output.js'
-import { prisma } from '../../../config/prisma.js'
+import * as UserRepo from "../user.repo.ts"
+import { ErrorOutput } from '../../../util/Output.ts'
+import { prisma } from '../../../config/prisma.ts'
 
 export const register = async (username: string, email: string, raw_password: string) => {
     const exist_user = await UserRepo.find_email_user(email)
