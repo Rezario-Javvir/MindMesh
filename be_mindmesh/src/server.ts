@@ -1,6 +1,8 @@
 import app from './app.ts'
 import chalk from 'chalk'
-import "dotenv/config"
+import dotenv from 'dotenv'
+
+dotenv.config()
 
 const PORT = 3000
 

@@ -1,5 +1,4 @@
 import { prisma } from "../../config/prisma.ts"
-import type { User } from "@prisma/client"
 
 export const find_name_user = async (partialName: string) => {
     return prisma.user.findMany({
@@ -34,8 +33,22 @@ export const find_all_user = async () => {
         select: {
             id: true,
             username: true,
+            email: true,
             profile: true,
             blog: true
         }
+    })
+}
+
+export const find_user_id = async (id: number) => {
+    return prisma.user.findUnique({
+        where: { id }
+    })
+}
+
+export const update_password = async (user_id: number, pass_hash: string) => {
+    return prisma.user.update({
+        where: { id: user_id },
+        data: { password: pass_hash }
     })
 }
