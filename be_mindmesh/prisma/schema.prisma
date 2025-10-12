@@ -27,8 +27,8 @@ model User {
 model Profile {
   id       Int     @id @default(autoincrement())
   fullname String?
-  bio      String?
-  image    String?
+  bio      String? @db.Text
+  avatar    String?
   user_id  Int     @unique
 
   user User   @relation(fields: [user_id], references: [id])
