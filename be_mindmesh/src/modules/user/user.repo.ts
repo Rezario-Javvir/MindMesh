@@ -1,22 +1,22 @@
 import { prisma } from "../../config/prisma.ts"
 
-export const find_name_user = async (partialName: string) => {
-    return prisma.user.findMany({
-        where: {
-            username: {
-                contains: partialName
-            }
-        },
-        select: {
-            id: true,
-            username: true,
-            email: true,
-            profile: true,
-            blog: true
-        },
-        take: 10
-    })
-}
+// export const find_name_user = async (partialName: string) => {
+//     return prisma.user.findMany({
+//         where: {
+//             username: {
+//                 contains: partialName
+//             }
+//         },
+//         select: {
+//             id: true,
+//             username: true,
+//             email: true,
+//             profile: true,
+//             blog: true
+//         },
+//         take: 10
+//     })
+// }
 
 export const find_email_user = async (email: string) => {
     return prisma.user.findUnique({
