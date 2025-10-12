@@ -20,7 +20,7 @@ export const find_user_name = async (req: Request, res: Response, next: NextFunc
             status: "success",
             data: user
         })
-    } 
+    }
     catch (error) {
         next(error)
     }
@@ -40,6 +40,6 @@ export const all_user = async (req: Request, res: Response, next: NextFunction) 
         })
     } 
     catch (error) {
-        
+        next(error)
     }
 }
