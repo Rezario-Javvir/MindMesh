@@ -24,7 +24,7 @@ export const register = async (username: string, email: string, raw_password: st
                 create: {
                     fullname: null,
                     bio: "Hello, I'm new in MindMesh",
-                    image: null
+                    avatar: null
                 }
             }
         },
@@ -35,8 +35,7 @@ export const register = async (username: string, email: string, raw_password: st
 
     const { password, ...userWithoutPass } = result
     return {
-        user: userWithoutPass,
-        profile: result.profile
+        user: userWithoutPass
     }
 }
 
