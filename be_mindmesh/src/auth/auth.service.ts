@@ -91,7 +91,7 @@ export const forgot_password = async (email: string) => {
 export const reset_password = async (token: string, new_password: string) => {
     try {
         const JWT_SECRET = process.env.JWT_SECRET_TOKEN
-        const decoded = jwt.verify(token, JWT_SECRET!) as { id: number }
+        const decoded = jwt.verify(token, JWT_SECRET as string) as { id: number }
         const user_id = decoded.id
 
         const user = await UserRepo.find_user_id(user_id)
