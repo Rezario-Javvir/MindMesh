@@ -26,3 +26,7 @@ body{
 .bg-col-dark{
   background-color: #234A4D;
 }
+
+button{
+  transition: 200ms;
+}
