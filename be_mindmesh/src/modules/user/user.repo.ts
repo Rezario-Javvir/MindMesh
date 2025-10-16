@@ -30,10 +30,7 @@ export const find_email_user = async (email: string) => {
 
 export const find_all_user = async () => {
     return prisma.user.findMany({
-        select: {
-            id: true,
-            username: true,
-            email: true,
+        include: {
             profile: true,
             blog: true
         }

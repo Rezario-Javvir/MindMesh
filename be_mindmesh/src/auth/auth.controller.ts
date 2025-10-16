@@ -75,7 +75,7 @@ export const controller_reset_password = async (req: Request, res: Response, nex
 
         const { token } = req.query
         const { new_password } = req.body
-        if(!token || !new_password) {
+        if(!new_password) {
             throw new ErrorOutput("All fields are required", 400)
         }
 
