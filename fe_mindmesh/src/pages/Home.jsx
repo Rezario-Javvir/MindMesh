@@ -8,7 +8,7 @@ function Home() {
   return (
     <div className='min-h-lvh bg-gray-900 text-col'>
         <div className='h-lvh flex items-start justify-center flex-col font-bold text-5xl p-5'>
-            <h1>Welcome to the mindmesh</h1>
+            <h1>Welcome to the mindme</h1>
             <p className='font-medium text-3xl'>Thousand thoughts is yours</p>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" className='absolute bottom-0 left-0'><path fill="#42757A" fill-opacity="1" d="M0,128L48,128C96,128,192,128,288,149.3C384,171,480,213,576,197.3C672,181,768,107,864,85.3C960,64,1056,96,1152,106.7C1248,117,1344,107,1392,101.3L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>
         </div>
