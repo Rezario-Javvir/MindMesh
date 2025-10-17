@@ -4,29 +4,100 @@
 
 body{
   font-family: "Poppins",sans-serif;
-  background-color: #234A4D;
-}
-
-.text-col{
-  color: #42757A;
-}
-
-.bg-col{
-  background-color: #42757A;
-}
-
-.grad-to-t{
-     background: linear-gradient(to top, #02040e, #42757A);
-}  
-
-.grad-to-b{
-     background: linear-gradient(to bottom, #02040e, #42757A);
-}  
-
-.bg-col-dark{
-  background-color: #234A4D;
-}
-
-button{
+  background-color: #5878b8;
+} 
+button,.Transition{
   transition: 200ms;
+}
+
+.neuro {
+  background: #e6e6e6; 
+  
+  box-shadow: 
+      20px 20px 48px #b6b6b6,
+      -20px -20px 48px #ffffff,
+      inset 0px 0px 0px #b6b6b6, 
+      inset 0px 0px 0px #ffffff; 
+
+  transition: all 250ms ease-out; 
+  
+  transform: scale(1); 
+}
+
+.neuro-b{
+  background: #7aa7ff;
+  box-shadow:  20px 20px 69px #5878b8,
+               -20px -20px 69px #9cd6ff,
+               inset 0px 0px 0px #5878b8,
+               inset 0px 0px 0px #9cd6ff
+               ;
+
+               transition: all 250ms ease-out; 
+  
+               transform: scale(1); 
+}
+
+.neuro-b:hover{
+background: #7aa7ff;
+box-shadow: 0px 0px 0px #5878b8,
+            0px 0px 0px #9cd6ff,
+            inset 20px 20px 69px #5878b8,
+            inset -20px -20px 69px #9cd6ff;
+            transform: scale(0.98); 
+
+}
+
+.neuro:hover,.neuro-bub:hover {
+
+  background: #e6e6e6;
+
+  box-shadow: 
+      0px 0px 0px #b6b6b6, 
+      0px 0px 0px #ffffff, 
+      inset 20px 20px 48px #b6b6b6,
+      inset -20px -20px 48px #ffffff; 
+      
+  transform: scale(0.98); 
+}
+
+.neuro-in{
+       box-shadow: inset 20px 20px 48px #b6b6b6,
+       inset -20px -20px 48px #ffffff;
+}
+
+.neuro-b-st{
+  box-shadow:  20px 20px 69px #5878b8,
+  -20px -20px 69px #9cd6ff,
+  inset 0px 0px 0px #5878b8,
+  inset 0px 0px 0px #9cd6ff
+  ;
+}
+
+.neuro-in-b{
+  background: #7aa7ff;
+  box-shadow: inset 20px 20px 60px #688ed9,
+              inset -20px -20px 60px #8cc0ff;
+}
+
+.neuro-bub{
+       background: linear-gradient(145deg, #f6f6f6, #cfcfcf);
+       box-shadow:  20px 20px 76px #838383,
+       -20px -20px 76px #ffffff;
+       transition: all 250ms ease-out; 
+}
+
+.neuro-hol{
+       background: linear-gradient(145deg, #cfcfcf, #f6f6f6);
+       box-shadow:  20px 20px 76px #a1a1a1,
+       -20px -20px 76px #ffffff;
+}
+
+.neuro-st{
+  background: #ffffff; 
+  
+  box-shadow: 
+      20px 20px 48px #b6b6b6,
+      -20px -20px 48px #ffffff,
+      inset 0px 0px 0px #b6b6b6, 
+      inset 0px 0px 0px #ffffff; 
 }

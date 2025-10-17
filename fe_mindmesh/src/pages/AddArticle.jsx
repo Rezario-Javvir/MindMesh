@@ -1,26 +1,26 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 import {FaHome} from 'react-icons/fa'
+import { Link } from 'react-router-dom'
 
 function AddArticle() {
   return (
-    <div className='bg-col min-h-lvh flex flex-col relative'>
-      <h1 className='m-2 text-gray-900 font-bold text-4xl'>Add article</h1>
-      <Link className='p-2 bg-gray-900 rounded-md absolute top-2 right-2' to='/'><FaHome size={30} color='white'/></Link>
-      <div className='bg-col-dark absolute bottom-0 h-110 md:h-130 w-full flex flex-wrap p-2'>
-        <div className='h-full md:w-3/10 px-4 flex items-start flex-col gap-2 w-full'>
-            <h1 className='text-emerald-100 text-3xl font-bold'>Title</h1>
-            <input type="text" className='bg-gray-900 w-full text-2xl text-emerald-100 p-2 rounded-md' />
-            <h1 className='text-emerald-100 text-3xl font-bold'>Image</h1>
-            <input type="text" className='bg-gray-900 w-full text-2xl text-emerald-100 p-2 rounded-md' />
-            <h1 className='text-emerald-100 text-3xl font-bold'>Category</h1>
-            <input type="text" className='bg-gray-900 w-full text-2xl text-emerald-100 p-2 rounded-md' />
+    <div className='min-h-lvh text-gray-500 flex flex-col'>
+        <div className='h-25 neuro-in flex items-center justify-between px-15'>
+            <h1 className='font-bold text-6xl'>Add article</h1>
+            <Link className='neuro-bub bg-col text-white p-2 rounded-md' to="/Account"><FaHome color='gray' size={40}/></Link>
         </div>
-        <div className='bg-col-dark h-full w-full md:w-7/10 p-4 flex flex-col'>
-            <h1 className='text-4xl text-emerald-100 font-bold'>Article</h1>
-            <input type="text" className='bg-gray-900 h-full rounded-md' />
+        <div className='min-h-143 neuro-st flex flex-col md:flex-row'>
+            <div className='min-h-lvh w-full md:w-1/3 flex items-center justify-start pt-40 flex-col gap-5'>
+                <input type="text" className="text-4xl neuro-in rounded-xl p-3" placeholder='Tittle'/>
+                <input type="text" className="text-4xl neuro-in rounded-xl p-3" placeholder='Image'/>
+                <input type="text" className="text-4xl neuro-in rounded-xl p-3" placeholder='Category'/>
+            </div>
+            <div className='min-h-lvh w-full md:w-2/3 neuro-in flex items-center justify-center px-15 flex-col gap-10'>
+                <h1 className='text-4xl font-bold'>Article</h1>
+                <textarea name="" id="" cols="30" rows="10" className='neuro-in w-full text-2xl font-semibold p-3 rounded-xl'></textarea>
+                <button className='text-4xl font-semibold rounded-xl neuro-bub px-5 py-2'>Post</button>
+            </div>
         </div>
-      </div>
     </div>
   )
 }
