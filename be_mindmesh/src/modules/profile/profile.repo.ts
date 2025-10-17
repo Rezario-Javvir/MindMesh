@@ -11,10 +11,10 @@ export const find_id_profile = async (id: number) => {
                 select: {
                     id: true,
                     username: true,
-                    email: true
+                    email: true,
+                    blog: true
                 }
             },
-            blog: true
         }
     })
 }
