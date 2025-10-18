@@ -37,7 +37,7 @@ export const search_article_controller = async (req: Request, res: Response, nex
             results: blog.length,
             data: blog
         })
-    }
+    } 
     catch (error) {
         next(error)
     }

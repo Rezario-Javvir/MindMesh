@@ -1,0 +1,104 @@
+@import url('https://fonts.googleapis.com/css2?family=Asimovian&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+@import "tailwindcss";
+
+body{
+  font-family: "Poppins",sans-serif;
+  background-color: #5878b8;
+} 
+button,.Transition{
+  transition: 200ms;
+}
+
+.neuro {
+  background: #e6e6e6; 
+  
+  box-shadow: 
+      20px 20px 48px #b6b6b6,
+      -20px -20px 48px #ffffff,
+      inset 0px 0px 0px #b6b6b6, 
+      inset 0px 0px 0px #ffffff; 
+
+  transition: all 250ms ease-out; 
+  
+  transform: scale(1); 
+}
+
+.neuro-b{
+  background: #7aa7ff;
+  box-shadow:  20px 20px 69px #5878b8,
+               -20px -20px 69px #9cd6ff,
+               inset 0px 0px 0px #5878b8,
+               inset 0px 0px 0px #9cd6ff
+               ;
+
+               transition: all 250ms ease-out; 
+  
+               transform: scale(1); 
+}
+
+.neuro-b:hover{
+background: #7aa7ff;
+box-shadow: 0px 0px 0px #5878b8,
+            0px 0px 0px #9cd6ff,
+            inset 20px 20px 69px #5878b8,
+            inset -20px -20px 69px #9cd6ff;
+            transform: scale(0.98); 
+
+}
+
+.neuro:hover,.neuro-bub:hover {
+
+  background: #e6e6e6;
+
+  box-shadow: 
+      0px 0px 0px #b6b6b6, 
+      0px 0px 0px #ffffff, 
+      inset 20px 20px 48px #b6b6b6,
+      inset -20px -20px 48px #ffffff; 
+      
+  transform: scale(0.98); 
+}
+
+.neuro-in{
+       box-shadow: inset 20px 20px 48px #b6b6b6,
+       inset -20px -20px 48px #ffffff;
+}
+
+.neuro-b-st{
+  background: #7aa7ff;
+  box-shadow:  20px 20px 69px #5878b8,
+  -20px -20px 69px #9cd6ff,
+  inset 0px 0px 0px #5878b8,
+  inset 0px 0px 0px #9cd6ff
+  ;
+}
+
+.neuro-in-b{
+  background: #6095ff;
+  box-shadow: inset 20px 20px 60px #688ed9,
+              inset -20px -20px 60px #8cc0ff;
+}
+
+.neuro-bub{
+       background: linear-gradient(145deg, #f6f6f6, #cfcfcf);
+       box-shadow:  20px 20px 76px #838383,
+       -20px -20px 76px #ffffff;
+       transition: all 250ms ease-out; 
+}
+
+.neuro-hol{
+       background: linear-gradient(145deg, #cfcfcf, #f6f6f6);
+       box-shadow:  20px 20px 76px #a1a1a1,
+       -20px -20px 76px #ffffff;
+}
+
+.neuro-st{
+  background: #ffffff; 
+  
+  box-shadow: 
+      20px 20px 48px #b6b6b6,
+      -20px -20px 48px #ffffff,
+      inset 0px 0px 0px #b6b6b6, 
+      inset 0px 0px 0px #ffffff; 
+}

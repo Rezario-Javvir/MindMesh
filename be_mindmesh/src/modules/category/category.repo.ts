@@ -13,6 +13,8 @@ export const category_create = async () => {
             { category_name: "history" },
             { category_name: "Self-Improvement" },
             { category_name: "Other" }
+            { category_name: "Tech" },
+            { category_name: "Self-Improvement" }
         ]
     })
 }
