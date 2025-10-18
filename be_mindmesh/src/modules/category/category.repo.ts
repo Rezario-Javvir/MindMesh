@@ -9,6 +9,10 @@ export const category_create = async () => {
             { category_name: "Health" },
             { category_name: "Military" },
             { category_name: "Finance" },
+            { category_name: "Religion" },
+            { category_name: "history" },
+            { category_name: "Self-Improvement" },
+            { category_name: "Other" }
             { category_name: "Tech" },
             { category_name: "Self-Improvement" }
         ]

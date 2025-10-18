@@ -30,7 +30,7 @@ app.use("/user", userRoute)
 app.use("/profile", profileRoute)
 app.use("/dev-reset", resetRoute)
 app.use("/dev-check", checkRoute)
-app.use("/blog", blogRoute)
+app.use("/article", blogRoute)
 app.use("/category", categoryRoute)
 
 app.use(notFound)

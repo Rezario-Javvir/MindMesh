@@ -12,7 +12,7 @@ export const create_article_controller = async (req: Request, res: Response, nex
         console.log(chalk.greenBright("Blog post creation successful"))
         res.status(201).json({
             status: "success",
-            data: newBlog
+            article: newBlog
         })
     }
     catch (error) {
