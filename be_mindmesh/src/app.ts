@@ -7,7 +7,7 @@ import userRoute from "./modules/user/user.route.ts"
 import profileRoute from "./modules/profile/profile.route.ts"
 import resetRoute from "./dev/reset/reset_db.route.ts"
 import checkRoute from "./dev/check/check_db.route.ts"
-import blogRoute from "./modules/article/blog.route.ts"
+import blogRoute from "./modules/article/article.route.ts"
 import categoryRoute from "./modules/category/category.route.ts"
 
 const app = express()
