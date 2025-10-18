@@ -20,7 +20,7 @@ model User {
   password String
 
   profile Profile?
-  blog    Blog[]
+  blog    Article[]
   comment Comment[]
 }
 
@@ -34,11 +34,13 @@ model Profile {
   user User @relation(fields: [user_id], references: [id])
 }
 
-model Blog {
+model Article {
   id      Int     @id @default(autoincrement())
   title   String?
   content String? @db.Text
   image   String?
+  created_at DateTime @default(now())
+  updated_at  DateTime @updatedAt()
 
   user_id     Int
   category_id Int
@@ -52,7 +54,7 @@ model category {
   id            Int     @id @default(autoincrement())
   category_name String?
 
-  blog Blog[]
+  blog Article[]
 }
 
 model Comment {
@@ -63,5 +65,5 @@ model Comment {
   blog_id Int
 
   user User @relation(fields: [user_id], references: [id])
-  blog Blog @relation(fields: [blog_id], references: [id])
+  blog Article @relation(fields: [blog_id], references: [id])
 }
