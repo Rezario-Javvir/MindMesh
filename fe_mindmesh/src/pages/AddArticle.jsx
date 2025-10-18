@@ -5,9 +5,9 @@ import { Link } from 'react-router-dom'
 function AddArticle() {
   return (
     <div className='min-h-lvh text-gray-500 flex flex-col'>
-        <div className='h-25 neuro-in flex items-center justify-between px-15'>
+        <div className='h-25 neuro-in-b z-10 flex items-center justify-between px-15 text-white'>
             <h1 className='font-bold text-6xl'>Add article</h1>
-            <Link className='neuro-bub bg-col text-white p-2 rounded-md' to="/Account"><FaHome color='gray' size={40}/></Link>
+            <Link className='neuro-b bg-col text-white p-2 rounded-md' to="/"><FaHome color='white' size={40}/></Link>
         </div>
         <div className='min-h-143 neuro-st flex flex-col md:flex-row'>
             <div className='min-h-lvh w-full md:w-1/3 flex items-center justify-start pt-40 flex-col gap-5'>

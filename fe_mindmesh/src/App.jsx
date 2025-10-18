@@ -6,6 +6,7 @@ import Login from "./pages/Login"
 import Register from "./pages/Register"
 import TestPage from "./pages/TestPage"
 import AddArticle from "./pages/AddArticle"
+import ArticlesPage from "./pages/ArticlePage"
 
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
           <Route path="/Register" element={<Register/>}></Route>
           <Route path="/TestPage" element={<TestPage/>}></Route>
           <Route path="/AddArticle" element={<AddArticle/>}></Route>
+          <Route path="/ArticlesPage" element={<ArticlesPage/>}></Route>
         </Routes>
       </Router>
     </div>

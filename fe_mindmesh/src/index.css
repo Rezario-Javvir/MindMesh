@@ -66,6 +66,7 @@ box-shadow: 0px 0px 0px #5878b8,
 }
 
 .neuro-b-st{
+  background: #7aa7ff;
   box-shadow:  20px 20px 69px #5878b8,
   -20px -20px 69px #9cd6ff,
   inset 0px 0px 0px #5878b8,
@@ -74,7 +75,7 @@ box-shadow: 0px 0px 0px #5878b8,
 }
 
 .neuro-in-b{
-  background: #7aa7ff;
+  background: #6095ff;
   box-shadow: inset 20px 20px 60px #688ed9,
               inset -20px -20px 60px #8cc0ff;
 }
