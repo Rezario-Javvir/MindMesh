@@ -39,7 +39,7 @@ export const check_profile = async (req: Request, res: Response, next: NextFunct
 export const check_blog = async (req: Request, res: Response, next: NextFunction) => {
     console.log(chalk.blueBright("Checking Blog table..."))
     try {
-        const blog = await prisma.blog.findMany({
+        const blog = await prisma.article.findMany({
             include: { user: true }
         })
         console.log(chalk.greenBright("Blog table check successful"))
