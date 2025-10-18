@@ -1,5 +1,10 @@
 import { Router } from "express"
-import { create_article_controller, search_article_controller, get_all_article_controller, edit_article_controller } from "./article.controller.ts"
+import { 
+    create_article_controller, 
+    search_article_controller, 
+    get_all_article_controller, 
+    edit_article_controller 
+} from "./article.controller.ts"
 
 const router = Router()
 
