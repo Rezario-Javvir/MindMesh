@@ -9,7 +9,7 @@ export const profile = async () => {
 }
 
 export const article = async () => {
-    return prisma.article.findMany()
+    return prisma.blog.findMany()
 }
 
 export const category = async () => {

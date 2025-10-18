@@ -9,7 +9,7 @@ export const check_profile_service = async () => {
 }
 
 export const check_blog_service = async () => {
-    return await CheckService.article()
+    return await CheckService.blog()
 }
 
 export const check_category_service = async () => {
