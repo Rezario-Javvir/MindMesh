@@ -2,7 +2,8 @@ import { prisma } from "../../config/prisma.ts"
 
 export const article_create = async (
     title: string, 
-    content: string, 
+    content: string,
+    image: string,
     user_id: number,
     category_id: number
 ) => {
@@ -10,6 +11,7 @@ export const article_create = async (
         data: {
             title,
             content,
+            image,
             user_id,
             category_id
         }
@@ -40,6 +42,7 @@ export const all_article = async () => {
 
 export const find_article = async (partialTitle: string) => {
     return prisma.article.findMany({
+        take: 5,
         where: {
             title: {
                 contains: partialTitle
