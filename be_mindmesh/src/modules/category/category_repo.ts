@@ -1,6 +1,6 @@
 import { prisma } from "../../config/prisma.ts"
 
-export const category_create = async () => {
+export const category_create_repo = async () => {
     return prisma.category.createMany({
         data: [
             { category_name: "Technology" },
@@ -17,6 +17,6 @@ export const category_create = async () => {
     })
 }
 
-export const get_categories = async () => {
+export const get_categories_repo = async () => {
     return prisma.category.findMany()
 }

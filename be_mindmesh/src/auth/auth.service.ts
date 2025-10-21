@@ -1,6 +1,6 @@
 import * as bcrypt from 'bcrypt'
 import jwt from "jsonwebtoken"
-import * as UserRepo from "../modules/user/user.repo.ts"
+import * as UserRepo from "../modules/user/user_repo.ts"
 import { ErrorOutput } from '../util/Output.ts'
 import { prisma } from '../config/prisma.ts'
 import nodemailer from "nodemailer"

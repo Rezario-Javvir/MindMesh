@@ -1,4 +1,4 @@
-import * as UserRepo from './user.repo.ts'
+import * as UserRepo from './user_repo.ts'
 
 // export const find_name = async (partial_name: string): Promise<any> => {
 //     const name_user = await UserRepo.find_name_user(partial_name)
@@ -10,7 +10,7 @@ import * as UserRepo from './user.repo.ts'
 //     return name_user
 // }
 
-export const find_all_user = async (): Promise<any> => {
-    const user = await UserRepo.find_all_user()
+export const find_all_user_service = async (): Promise<any> => {
+    const user = await UserRepo.find_all_user_repo()
     return user
 }

@@ -1,5 +1,5 @@
 import type { Request, Response, NextFunction } from "express"
-import * as ArticleService from "./article.service.ts"
+import * as ArticleService from "./article_service.ts"
 import { ErrorOutput } from "../../util/Output.ts"
 import chalk from "chalk"
 
@@ -13,7 +13,7 @@ export const create_article_controller = async (req: Request, res: Response, nex
         }
         const image = file.filename
 
-        const newBlog = await ArticleService.create_article(title, content, image, user_id, category_id)
+        const newBlog = await ArticleService.create_article_service(title, content, image, user_id, category_id)
         console.log(chalk.greenBright("Blog post creation successful"))
         res.status(201).json({
             status: "success",
@@ -34,7 +34,7 @@ export const search_article_controller = async (req: Request, res: Response, nex
         }
 
         const partial_title = title.trim()
-        const blog = await ArticleService.search_article(partial_title)
+        const blog = await ArticleService.search_article_service(partial_title)
 
         console.log(chalk.greenBright("Blog post search successful"))
         res.status(200).json({
@@ -51,7 +51,7 @@ export const search_article_controller = async (req: Request, res: Response, nex
 export const get_all_article_controller = async (req: Request, res: Response, next: NextFunction) => {
     try {
         console.log(chalk.blueBright("Fetching all blog posts..."))
-        const blogs = await ArticleService.find_all_article()
+        const blogs = await ArticleService.find_all_article_service()
         console.log(chalk.greenBright("All blog posts fetch successful"))
         res.status(200).json({
             status: "success",
@@ -73,7 +73,7 @@ export const edit_article_controller = async (req: Request, res: Response, next:
 
         const { title, content } = req.body
         const blog_id = parseInt(id)
-        const updatedBlog = await ArticleService.edit_article(blog_id, { title, content })
+        const updatedBlog = await ArticleService.edit_article_service(blog_id, { title, content })
 
         console.log(chalk.greenBright("Blog post edit successful"))
         res.status(200).json({

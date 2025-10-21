@@ -1,6 +1,6 @@
 import { prisma } from "../../config/prisma.ts"
 
-export const article_create = async (
+export const article_create_repo = async (
     title: string, 
     content: string,
     image: string,
@@ -18,7 +18,7 @@ export const article_create = async (
     })
 }
 
-export const all_article = async () => {
+export const all_article_repo = async () => {
     return prisma.article.findMany({
         include: {
             user: {
@@ -40,7 +40,7 @@ export const all_article = async () => {
     })
 }
 
-export const find_article = async (partialTitle: string) => {
+export const find_article_repo = async (partialTitle: string) => {
     return prisma.article.findMany({
         take: 5,
         where: {
@@ -51,7 +51,7 @@ export const find_article = async (partialTitle: string) => {
     })
 }
 
-export const update_article = async (id: number, data: any) => {
+export const update_article_repo = async (id: number, data: any) => {
     return prisma.article.update({
         where: { id },
         data: data

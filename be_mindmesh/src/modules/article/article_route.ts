@@ -4,7 +4,7 @@ import {
     search_article_controller, 
     get_all_article_controller, 
     edit_article_controller 
-} from "./article.controller.ts"
+} from "./article_controller.ts"
 import { upload } from "../../middleware/upload.middleware.ts"
 
 const router = Router()

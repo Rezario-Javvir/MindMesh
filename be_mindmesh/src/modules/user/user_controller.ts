@@ -1,5 +1,5 @@
 import type { Request, Response, NextFunction } from "express"
-import * as UserService from "./user.service.ts"
+import * as UserService from "./user_service.ts"
 // import { ErrorOutput } from "../../util/Output.ts"
 import chalk from "chalk"
 
@@ -26,11 +26,11 @@ import chalk from "chalk"
 //     }
 // }
 
-export const all_user = async (req: Request, res: Response, next: NextFunction) => {
+export const all_user_controller = async (req: Request, res: Response, next: NextFunction) => {
     try {
         console.log(chalk.blueBright("Fetching all users..."))
 
-        const user = await UserService.find_all_user()
+        const user = await UserService.find_all_user_service()
 
         console.log(chalk.greenBright("Fetched all users successfully"))
         res.status(200).json({

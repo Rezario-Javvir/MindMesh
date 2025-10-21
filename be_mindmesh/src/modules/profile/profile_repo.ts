@@ -1,6 +1,6 @@
 import { prisma } from "../../config/prisma.ts"
 
-export const find_id_profile = async (id: number) => {
+export const find_id_profile_repo = async (id: number) => {
     return prisma.profile.findUnique({
         where: { id },
         select: {
@@ -19,7 +19,7 @@ export const find_id_profile = async (id: number) => {
     })
 }
 
-export const edit_user_profile = async (id: number, data: any) => {
+export const edit_user_profile_repo = async (id: number, data: any) => {
     return prisma.profile.update({
         where: { id },
         data: data

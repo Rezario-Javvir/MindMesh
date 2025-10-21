@@ -1,7 +1,7 @@
-import * as ProfileRepo from "./profile.repo.ts"
+import * as ProfileRepo from "./profile_repo.ts"
 
 export const find_profile = async (id: number) => {
-    const profile = await ProfileRepo.find_id_profile(id)
+    const profile = await ProfileRepo.find_id_profile_repo(id)
 
     if (!profile) {
         throw new Error("Profile not found")
@@ -11,7 +11,7 @@ export const find_profile = async (id: number) => {
 }
 
 export const edit_user_profile = async (id: number, data: any) => {
-    const profile = await ProfileRepo.edit_user_profile(id, data)
+    const profile = await ProfileRepo.edit_user_profile_repo(id, data)
 
     if (!profile) {
         throw new Error("Profile not found")

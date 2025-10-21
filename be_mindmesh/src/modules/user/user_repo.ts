@@ -18,7 +18,7 @@ import { prisma } from "../../config/prisma.ts"
 //     })
 // }
 
-export const find_email_user = async (email: string) => {
+export const find_email_user_repo = async (email: string) => {
     return prisma.user.findUnique({
         where: { email },
         include: {
@@ -28,7 +28,7 @@ export const find_email_user = async (email: string) => {
     })
 }
 
-export const find_all_user = async () => {
+export const find_all_user_repo = async () => {
     return prisma.user.findMany({
         include: {
             profile: true,
@@ -37,13 +37,13 @@ export const find_all_user = async () => {
     })
 }
 
-export const find_user_id = async (id: number) => {
+export const find_user_id_repo = async (id: number) => {
     return prisma.user.findUnique({
         where: { id }
     })
 }
 
-export const update_password = async (user_id: number, pass_hash: string) => {
+export const update_password_repo = async (user_id: number, pass_hash: string) => {
     return prisma.user.update({
         where: { id: user_id },
         data: { password: pass_hash }

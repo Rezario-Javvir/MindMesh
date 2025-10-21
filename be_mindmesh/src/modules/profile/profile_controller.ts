@@ -1,8 +1,8 @@
 import type { Request, Response, NextFunction } from "express"
-import * as ProfileService from "./profile.service.ts"
+import * as ProfileService from "./profile_service.ts"
 import chalk from "chalk"
 
-export const get_profile_id = async (req: Request, res: Response, next: NextFunction) => {
+export const get_profile_id_controller = async (req: Request, res: Response, next: NextFunction) => {
     try {
         console.log(chalk.blueBright("Fetching profile by ID..."))
         
@@ -23,7 +23,7 @@ export const get_profile_id = async (req: Request, res: Response, next: NextFunc
     }
 }
 
-export const edit_profile = async (req: Request, res: Response, next: NextFunction) => {
+export const edit_profile_controller = async (req: Request, res: Response, next: NextFunction) => {
     try {
         console.log(chalk.blueBright("Editing profile..."))
         

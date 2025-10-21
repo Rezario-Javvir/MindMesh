@@ -1,21 +1,21 @@
-import * as CheckService from "./check_db.repo.ts"
+import * as CheckRepo from "./check_db.repo.ts"
 
 export const check_user_service = async () => {
-    return await CheckService.user()
+    return await CheckRepo.check_user_repo()
 }
 
 export const check_profile_service = async () => {
-    return await CheckService.profile()
+    return await CheckRepo.check_profile_repo()
 }
 
-export const check_blog_service = async () => {
-    return await CheckService.article()
+export const check_article_service = async () => {
+    return await CheckRepo.check_article_repo()
 }
 
 export const check_category_service = async () => {
-    return await CheckService.category()
+    return await CheckRepo.check_category_repo()
 }
 
 export const check_comment_service = async () => {
-    return await CheckService.comment()
+    return await CheckRepo.check_comment_repo()
 }

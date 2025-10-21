@@ -5,12 +5,12 @@ import { errorHandler } from './middleware/error.middleware.ts'
 import { notFound } from './middleware/notFound.middleware.ts'
 import { fileURLToPath } from 'url'
 import authRoute from "./auth/auth.route.ts"
-import userRoute from "./modules/user/user.route.ts"
-import profileRoute from "./modules/profile/profile.route.ts"
+import userRoute from "./modules/user/user_route.ts"
+import profileRoute from "./modules/profile/profile._oute.ts"
 import resetRoute from "./dev/reset/reset_db.route.ts"
 import checkRoute from "./dev/check/check_db.route.ts"
-import blogRoute from "./modules/article/article.route.ts"
-import categoryRoute from "./modules/category/category.route.ts"
+import blogRoute from "./modules/article/article_route.ts"
+import categoryRoute from "./modules/category/category_route.ts"
 
 const app = express()
 
