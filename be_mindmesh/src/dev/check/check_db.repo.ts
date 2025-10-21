@@ -1,21 +1,21 @@
 import { prisma } from "../../config/prisma.ts"
 
-export const user = async () => {
+export const check_user_repo = async () => {
     return prisma.user.findMany()
 }
 
-export const profile = async () => {
+export const check_profile_repo = async () => {
     return prisma.profile.findMany()
 }
 
-export const article = async () => {
+export const check_article_repo = async () => {
     return prisma.article.findMany()
 }
 
-export const category = async () => {
+export const check_category_repo = async () => {
     return prisma.category.findMany()
 }
 
-export const comment = async () => {
+export const check_comment_repo = async () => {
     return prisma.comment.findMany()
 }
