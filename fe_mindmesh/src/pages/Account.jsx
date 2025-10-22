@@ -8,7 +8,7 @@ function Account() {
       <div className='h-lvh w-full md:w-3/10 flex items-center justify-center flex-col gap-2 neuro-in bg-gray-100'>
         <div className='h-50 w-50 neuro-bub rounded-full'></div>
         <h1 className='text-gray-500 font-bold text-4xl'>Username</h1>
-        <h1 className='text-gray-500 font-semibold text-2xl'>Nigger@gmail.com</h1>
+        <h1 className='text-gray-500 font-semibold text-2xl'>Example@gmail.com</h1>
       </div>
 
       <div className='h-lvh w-full neuro-st md:w-7/10 bg-col p-2 flex flex-col gap-4 relative'>
