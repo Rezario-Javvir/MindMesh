@@ -9,7 +9,17 @@ export const check_profile_repo = async () => {
 }
 
 export const check_article_repo = async () => {
-    return prisma.article.findMany()
+    return prisma.article.findMany({
+        include: {
+            user: {
+                omit: { 
+                    id: true, 
+                    password: true 
+                }
+            },
+            category: { omit: { id: true } }
+        }
+    })
 }
 
 export const check_category_repo = async () => {

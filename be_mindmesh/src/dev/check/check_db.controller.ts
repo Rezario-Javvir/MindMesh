@@ -35,11 +35,11 @@ export const check_profile_controller = async (req: Request, res: Response, next
     }
 }
 
-export const check_blog_controller = async (req: Request, res: Response, next: NextFunction) => {
+export const check_article_controller = async (req: Request, res: Response, next: NextFunction) => {
     console.log(chalk.blueBright("Checking Blog table..."))
     try {
         const blog = await CheckService.check_article_service()
-        console.log(chalk.greenBright("Blog table check successful"))
+        console.log(chalk.greenBright("Article table check successful"))
         res.status(200).json({
             status: "success",
             results: blog.length,
