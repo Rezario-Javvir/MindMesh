@@ -20,20 +20,18 @@ export const article_create_repo = async (
 
 export const all_article_repo = async () => {
     return prisma.article.findMany({
+        omit: { created_at: true, updated_at: true },
         include: {
             user: {
+                omit: { password: true },
+                include: {
+                    profile: true
+                }
+            },
+            comment: {
                 select: {
                     id: true,
-                    username: true,
-                    email: true,
-                    profile: {
-                        select: {
-                            id: true,
-                            fullname: true,
-                            bio: true,
-                            avatar: true
-                        }
-                    }
+                    text: true
                 }
             }
         }

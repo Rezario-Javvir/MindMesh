@@ -1,5 +1,5 @@
 import { ErrorOutput } from '../../util/Output.ts'
-import * as ArticleRepo from './article_repo.ts'
+import * as ArticleRepo from '../article/article_repo.ts'
 
 export const create_article_service = async (
     title: string, 
