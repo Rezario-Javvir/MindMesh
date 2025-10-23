@@ -1,4 +1,6 @@
 import type { Request, Response, NextFunction } from "express"
+import type { AuthRequest } from "../../middleware/auth.middleware.ts"
+import { ErrorOutput } from "../../util/Output.ts"
 import * as ProfileService from "./profile_service.ts"
 import chalk from "chalk"
 
@@ -23,18 +25,18 @@ export const get_profile_id_controller = async (req: Request, res: Response, nex
     }
 }
 
-export const edit_profile_controller = async (req: Request, res: Response, next: NextFunction) => {
+export const edit_profile_controller = async (req: AuthRequest, res: Response, next: NextFunction) => {
     try {
+        if(!req.user) {
+            throw new ErrorOutput("Authentication required: User ID missing from token.", 401)
+        }
+
         console.log(chalk.blueBright("Editing profile..."))
         
-        const { id } = req.params
-        if(!id || isNaN(parseInt(id))) {
-            throw new Error("Profile ID is missing or invalid")
-        }
-        const { fullname, bio } = req.body
-        const profile_id = parseInt(id)
+        const { fullname, bio, avatar } = req.body
+        const user_id = req.user.id 
 
-        const updatedProfile = await ProfileService.edit_user_profile(profile_id, { fullname, bio })
+        const updatedProfile = await ProfileService.edit_user_profile(user_id, { fullname, bio, avatar })
         console.log(chalk.greenBright("Profile edit successful"))
         res.status(200).json({
             status: "success",
