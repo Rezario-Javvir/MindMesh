@@ -30,10 +30,10 @@ export const controller_login = async (req: Request, res: Response, next: NextFu
         console.log(chalk.blueBright("Logging in user..."))
 
         const { email, password } = req.body
-        const result = await AuthService.login(email, password)
         if(!email || !password) {
             throw new ErrorOutput("All fields are required", 400)
         }
+        const result = await AuthService.login(email, password)
 
         console.log(chalk.greenBright("User logged in successfully"))
         res.status(200).json({
