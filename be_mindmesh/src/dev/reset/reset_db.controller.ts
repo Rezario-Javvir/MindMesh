@@ -7,7 +7,7 @@ export const reset_db = async (req: Request, res: Response, next: NextFunction) 
 
     const tablesToTruncate = [
         'Comment',
-        'Blog',
+        'Article',
         'Profile',
         'User',
         'category'

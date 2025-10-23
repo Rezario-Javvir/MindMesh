@@ -20,7 +20,7 @@ model User {
   password String
 
   profile Profile?
-  blog    Article[]
+  article Article[]
   comment Comment[]
 }
 
@@ -35,12 +35,12 @@ model Profile {
 }
 
 model Article {
-  id      Int     @id @default(autoincrement())
-  title   String?
-  content String? @db.Text
-  image   String?
+  id         Int      @id @default(autoincrement())
+  title      String?
+  content    String?  @db.Text
+  image      String?
   created_at DateTime @default(now())
-  updated_at  DateTime @updatedAt()
+  updated_at DateTime @updatedAt()
 
   user_id     Int
   category_id Int
@@ -54,7 +54,7 @@ model category {
   id            Int     @id @default(autoincrement())
   category_name String?
 
-  blog Article[]
+  article Article[]
 }
 
 model Comment {
@@ -62,8 +62,8 @@ model Comment {
   text String? @db.Text
 
   user_id Int
-  blog_id Int
+  article_id Int
 
-  user User @relation(fields: [user_id], references: [id])
-  blog Article @relation(fields: [blog_id], references: [id])
+  user    User    @relation(fields: [user_id], references: [id])
+  article Article @relation(fields: [article_id], references: [id])
 }

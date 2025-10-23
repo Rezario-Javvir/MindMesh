@@ -23,7 +23,7 @@ export const find_email_user_repo = async (email: string) => {
         where: { email },
         include: {
             profile: true,
-            blog: true
+            article: true
         }
     })
 }
@@ -32,7 +32,7 @@ export const find_all_user_repo = async () => {
     return prisma.user.findMany({
         include: {
             profile: true,
-            blog: true
+            article: true
         }
     })
 }

@@ -6,17 +6,18 @@ import { notFound } from './middleware/notFound.middleware.ts'
 import { fileURLToPath } from 'url'
 import authRoute from "./auth/auth.route.ts"
 import userRoute from "./modules/user/user_route.ts"
-import profileRoute from "./modules/profile/profile._oute.ts"
+import profileRoute from "./modules/profile/profile_route.ts"
 import resetRoute from "./dev/reset/reset_db.route.ts"
 import checkRoute from "./dev/check/check_db.route.ts"
-import blogRoute from "./modules/article/article_route.ts"
+import articleRoute from "./modules/article/article_route.ts"
 import categoryRoute from "./modules/category/category_route.ts"
+import commentRoute from "./modules/comment/comment_route.ts"
 
 const app = express()
 
 const corsOption = {
     origin: "*",
-    methods: ["GET", "POST", "PUT", "DELETE"],
+    methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
     allowedHeaders: ["Content-Type", "Authorization"]
 }
 
@@ -38,8 +39,9 @@ app.use("/user", userRoute)
 app.use("/profile", profileRoute)
 app.use("/dev-reset", resetRoute)
 app.use("/dev-check", checkRoute)
-app.use("/article", blogRoute)
+app.use("/article", articleRoute)
 app.use("/category", categoryRoute)
+app.use("/comment", commentRoute)
 
 app.use(notFound)
 app.use(errorHandler)
