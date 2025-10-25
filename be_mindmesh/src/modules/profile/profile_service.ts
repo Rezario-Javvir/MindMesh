@@ -1,5 +1,9 @@
 import * as ProfileRepo from "./profile_repo.ts"
 
+export const my_profile_service = async () => {
+    return await ProfileRepo.my_profile_repo()
+}
+
 export const find_profile = async (id: number) => {
     const profile = await ProfileRepo.find_id_profile_repo(id)
 
