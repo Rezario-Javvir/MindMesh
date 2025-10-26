@@ -1,5 +1,17 @@
 import { prisma } from "../../config/prisma.ts"
 
+export const my_profile_repo = async () => {
+    return prisma.profile.findFirst({
+        include: {
+            user: {
+                include: {
+                    article: true
+                }
+            },
+        }
+    })
+}
+
 export const find_id_profile_repo = async (id: number) => {
     return prisma.profile.findUnique({
         where: { id },
@@ -8,14 +20,8 @@ export const find_id_profile_repo = async (id: number) => {
         },
         include: {
             user: {
-                omit: { password: true },
-                include: {
-                    article: {
-                        omit: {
-                            created_at: true,
-                            updated_at: true
-                        }
-                    }
+                select: {
+                    article: true
                 }
             }
         }

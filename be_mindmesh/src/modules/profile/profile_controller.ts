@@ -4,6 +4,27 @@ import { ErrorOutput } from "../../util/Output.ts"
 import * as ProfileService from "./profile_service.ts"
 import chalk from "chalk"
 
+export const my_profile_repo = async (req: AuthRequest, res: Response, next: NextFunction) => {
+    try {
+        if(!req.user) {
+            throw new ErrorOutput("Authentication required: User ID missing from token.", 401)
+        }
+
+        console.log(chalk.blueBright("Fetching my profile..."))
+
+        const my_profile = await ProfileService.my_profile_service()
+
+        console.log(chalk.greenBright("My profile fetched successful"))
+        res.status(200).json({
+            status: "success",
+            data: my_profile
+        })
+    }
+    catch (error) {
+        next(error)
+    }
+}
+
 export const get_profile_id_controller = async (req: Request, res: Response, next: NextFunction) => {
     try {
         console.log(chalk.blueBright("Fetching profile by ID..."))
@@ -14,7 +35,7 @@ export const get_profile_id_controller = async (req: Request, res: Response, nex
         const id = parseInt(req.params.id)
         const profile = await ProfileService.find_profile(id)
         
-        console.log(chalk.greenBright("Profile fetch successful"))
+        console.log(chalk.greenBright("Profile fetch successfully"))
         res.status(200).json({
             status: "success",
             data: profile
