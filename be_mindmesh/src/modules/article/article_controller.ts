@@ -10,7 +10,7 @@ export const create_article_controller = async (req: AuthRequest, res: Response,
             throw new ErrorOutput("Authentication required: User ID missing from token.", 401)
         }
 
-        console.log(chalk.blueBright("Creating new article post..."))
+        console.log(chalk.blueBright("Creating new article..."))
 
         const { title, content, category_id } = req.body
         const user_id = req.user.id
@@ -30,7 +30,7 @@ export const create_article_controller = async (req: AuthRequest, res: Response,
             user_id, 
             parsed_category_id
         )
-        console.log(chalk.greenBright("Blog post created successfully"))
+        console.log(chalk.greenBright("Article posted successfully"))
         res.status(201).json({
             status: "success",
             article: new_blog
@@ -68,7 +68,7 @@ export const get_all_article_controller = async (req: Request, res: Response, ne
     try {
         console.log(chalk.blueBright("Fetching all blog posts..."))
         const blogs = await ArticleService.find_all_article_service()
-        console.log(chalk.greenBright("All blog posts fetched successfully"))
+        console.log(chalk.greenBright("All articles fetched successfully"))
         res.status(200).json({
             status: "success",
             articles: blogs

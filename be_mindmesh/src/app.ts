@@ -32,7 +32,8 @@ app.get('/', (req, res) => {
     res.send('Hello, MindMesh!')
 })
 
-app.use("/upload", express.static(path.join(project_root, "public/images")))
+app.use("/upload/article", express.static(path.join(project_root, "public/images/article_image")))
+app.use("/upload/avatar", express.static(path.join(project_root, "public/images/avatar_image")))
 
 app.use("/auth", authRoute)
 app.use("/user", userRoute)
@@ -42,7 +43,6 @@ app.use("/dev-check", checkRoute)
 app.use("/article", articleRoute)
 app.use("/category", categoryRoute)
 app.use("/comment", commentRoute)
-
 app.use(notFound)
 app.use(errorHandler)
 

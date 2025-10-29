@@ -1,7 +1,12 @@
 import { prisma } from "../../config/prisma.ts"
 
 export const check_user_repo = async () => {
-    return prisma.user.findMany()
+    return prisma.user.findMany({
+        include: {
+            profile: true,
+            article: true
+        }
+    })
 }
 
 export const check_profile_repo = async () => {

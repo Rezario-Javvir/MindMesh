@@ -17,12 +17,11 @@ export const register = async (username: string, email: string, raw_password: st
 
     const result = await prisma.user.create({
         data: {
-            username,
             email,
             password: hashed_pass,
             profile: {
                 create: {
-                    fullname: null,
+                    username: username,
                     bio: "Hello, I'm new in MindMesh",
                     avatar: null
                 }

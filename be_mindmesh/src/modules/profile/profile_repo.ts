@@ -15,9 +15,6 @@ export const my_profile_repo = async () => {
 export const find_id_profile_repo = async (id: number) => {
     return prisma.profile.findUnique({
         where: { id },
-        omit: {
-            user_id: true
-        },
         include: {
             user: {
                 select: {
@@ -28,9 +25,9 @@ export const find_id_profile_repo = async (id: number) => {
     })
 }
 
-export const edit_user_profile_repo = async (id: number, data: { fullname?: string, bio?: string, avatar?: string }) => {
+export const edit_user_profile_repo = async (user_id: number, data: { username?: string, bio?: string, avatar?: string }) => {
     return prisma.profile.update({
-        where: { id },
+        where: { user_id: user_id },
         data: data
     })
 }

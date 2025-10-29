@@ -14,7 +14,7 @@ export const find_profile = async (id: number) => {
     return profile
 }
 
-export const edit_user_profile = async (id: number, data: { fullname?: string, bio?: string, avatar?: string }) => {
+export const edit_user_profile = async (id: number, data: { username?: string, bio?: string, avatar?: string }) => {
     const profile = await ProfileRepo.edit_user_profile_repo(id, data)
 
     if (!profile) {

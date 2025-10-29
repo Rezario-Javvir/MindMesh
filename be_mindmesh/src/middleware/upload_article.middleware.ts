@@ -3,7 +3,7 @@ import { ErrorOutput } from "../util/Output.ts"
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
-        cb(null, 'public/images')
+        cb(null, 'public/images/article_image')
     },
     filename: (req, file, cb) => {
         const ext = file.originalname.split('.').pop()
@@ -21,7 +21,7 @@ const file_filter = (req: any, file: Express.Multer.File, cb: multer.FileFilterC
     }
 }
 
-export const upload = multer({
+export const upload_article = multer({
     storage: storage,
     fileFilter: file_filter,
     limits: {
