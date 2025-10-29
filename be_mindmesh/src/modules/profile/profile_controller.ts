@@ -14,7 +14,7 @@ export const my_profile_repo = async (req: AuthRequest, res: Response, next: Nex
 
         const my_profile = await ProfileService.my_profile_service()
 
-        console.log(chalk.greenBright("My profile fetched successful"))
+        console.log(chalk.greenBright("My profile fetched successfully"))
         res.status(200).json({
             status: "success",
             data: my_profile
@@ -54,11 +54,19 @@ export const edit_profile_controller = async (req: AuthRequest, res: Response, n
 
         console.log(chalk.blueBright("Editing profile..."))
         
-        const { fullname, bio, avatar } = req.body
+        const { username, bio } = req.body
         const user_id = req.user.id 
 
-        const updatedProfile = await ProfileService.edit_user_profile(user_id, { fullname, bio, avatar })
-        console.log(chalk.greenBright("Profile edit successful"))
+        const file = (req.file as Express.Multer.File)?.filename
+        const updated_data: { username?: string, bio?: string, avatar?: string } = { username, bio }
+        
+        if (file) {
+            updated_data.avatar = file;
+            console.log("console.log('Avatar uploaded:', avatarFileName);")
+        }
+
+        const updatedProfile = await ProfileService.edit_user_profile(user_id, updated_data)
+        console.log(chalk.greenBright("Profile edit successfully"))
         res.status(200).json({
             status: "success",
             data: updatedProfile
