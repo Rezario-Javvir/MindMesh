@@ -54,7 +54,7 @@ export const create_comment_controller = async (req: AuthRequest, res: Response,
 
 export const get_command_by_id_article_controller = async (req: Request, res: Response, next: NextFunction) => {
     try {
-        console.log("Getting the comment...")
+        console.log(chalk.blueBright("Getting comments by article ID..."))
         const { id } = req.params
         if(!id || isNaN(parseInt(id))) {
             throw new ErrorOutput("Blog ID is missing", 400)
