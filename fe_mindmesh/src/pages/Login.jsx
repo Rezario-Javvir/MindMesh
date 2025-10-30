@@ -12,7 +12,7 @@ function Login() {
   
   const navigate = useNavigate()
 
-  const LOGIN_URL = 'https://kfbt6z3d-3000.asse.devtunnels.ms/auth/login' 
+  const LOGIN_URL = 'https://vfs90dhv-3000.asse.devtunnels.ms/auth/login' 
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword)
@@ -29,6 +29,13 @@ function Login() {
     e.preventDefault() 
 
     try {
+        const oldToken = localStorage.getItem('userToken');
+        if (oldToken) {
+            console.log('Token Lama Ditemukan:', oldToken.substring(0, 10) + '...');
+        } else {
+            console.log('Tidak ada token lama.');
+        }
+    
       const response = await axios.post(LOGIN_URL, {
         email, 
         password,
@@ -39,23 +46,25 @@ function Login() {
       // LANGKAH KRITIS 1: Simpan token dan data user ke localStorage
       localStorage.setItem('userToken', token)
       localStorage.setItem('userData', JSON.stringify(user))
-      
+      console.log('Token BARU Disimpan:', token.substring(0, 10) + '...');
+      const newTokenCheck = localStorage.getItem('userToken');
+      console.log('Token di localStorage setelah setItem:', newTokenCheck.substring(0, 10) + '...');
       showModal('Login berhasil! Mengalihkan ke halaman utama...', 'success')
       
       setTimeout(() => {
-        navigate('/')  // Mengarahkan ke Home, bukan Profile
+        navigate('/') 
       }, 1500) 
 
     } catch (error) {
       if (error.response) {
         console.error('Login failed:', error.response.data)
-        showModal(`Login Gagal: ${error.response.data.message || 'Email atau password tidak valid'}`, 'error')
+        showModal(`Login Failed: ${error.response.data.message || 'Email or password not valid'}`, 'error')
       } else if (error.request) {
         console.error('Login failed: No response from server')
-        showModal('Login Gagal: Tidak dapat terhubung ke server', 'error')
+        showModal('Login Failed: Cannot connect to the server', 'error')
       } else {
         console.error('Error:', error.message)
-        showModal('Terjadi kesalahan tak terduga', 'error')
+        showModal('Unexpected error', 'error')
       }
     }
   }

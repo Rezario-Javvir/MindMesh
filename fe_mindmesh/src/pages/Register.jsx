@@ -13,7 +13,7 @@ function Register() {
   
   const navigate = useNavigate()
 
-  const REGISTER_URL = 'https://kfbt6z3d-3000.asse.devtunnels.ms/auth/register' 
+  const REGISTER_URL = 'https://vfs90dhv-3000.asse.devtunnels.ms/auth/register' 
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword)
