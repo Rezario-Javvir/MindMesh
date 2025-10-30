@@ -30,7 +30,12 @@ export const search_article_service = async (partial_title: string) => {
     return blog
 }
 
-export const edit_article_service = async (id: number, data: any) => {
+export const detail_article_service = async (id: number) => {
+    const article_detail = await ArticleRepo.article_detail_repo(id)
+    return article_detail
+}
+
+export const edit_article_service = async (id: number, data: { title: string, content: string, image: string }) => {
     const blog = await ArticleRepo.update_article_repo(id, data)
     if(!blog) {
         throw new ErrorOutput("Blog not found", 404)

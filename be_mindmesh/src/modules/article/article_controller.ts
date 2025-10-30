@@ -66,7 +66,7 @@ export const search_article_controller = async (req: Request, res: Response, nex
 
 export const get_all_article_controller = async (req: Request, res: Response, next: NextFunction) => {
     try {
-        console.log(chalk.blueBright("Fetching all blog posts..."))
+        console.log(chalk.blueBright("Fetching all articles..."))
         const blogs = await ArticleService.find_all_article_service()
         console.log(chalk.greenBright("All articles fetched successfully"))
         res.status(200).json({
@@ -79,9 +79,31 @@ export const get_all_article_controller = async (req: Request, res: Response, ne
     }
 }
 
+export const get_detail_article_controller = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        console.log(chalk.blueBright("Fetching article detail..."))
+        const { id } = req.params
+        if(!id || isNaN(parseInt(id))) {
+            throw new ErrorOutput("Blog ID is missing", 400)
+        }
+
+        const article_id = parseInt(id)
+        const article_detail = await ArticleService.detail_article_service(article_id)
+
+        console.log(chalk.greenBright("Article detail fetched successfully"))
+        res.status(200).json({
+            status: "success",
+            article: article_detail
+        })
+    } 
+    catch (error) {
+        next(error)
+    }
+}
+
 export const edit_article_controller = async (req: AuthRequest, res: Response, next: NextFunction) => {
     try {
-        console.log(chalk.blueBright("Editing blog post..."))
+        console.log(chalk.blueBright("Editing article..."))
         const { id } = req.params
         if(!id || isNaN(parseInt(id))) {
             throw new ErrorOutput("Blog ID is missing", 400)
@@ -93,10 +115,11 @@ export const edit_article_controller = async (req: AuthRequest, res: Response, n
         }
 
         const { title, content } = req.body
+        const file = (req.file as Express.Multer.File)?.filename
         const blog_id = parseInt(id)
-        const updatedBlog = await ArticleService.edit_article_service(blog_id, { title, content })
+        const updatedBlog = await ArticleService.edit_article_service(blog_id, { title, content, image: file })
 
-        console.log(chalk.greenBright("Blog post edit successful"))
+        console.log(chalk.greenBright("Article edited successful"))
         res.status(200).json({
             status: "success",
             articles: updatedBlog
