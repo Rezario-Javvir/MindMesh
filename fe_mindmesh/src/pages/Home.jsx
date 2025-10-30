@@ -11,7 +11,7 @@ function Home() {
   const [searchQuery, setSearchQuery] = useState('') 
   const [isSearching, setIsSearching] = useState(false) 
 
-  const BASE_URL = 'https://kfbt6z3d-3000.asse.devtunnels.ms/blog'
+  const BASE_URL = 'https://vfs90dhv-3000.asse.devtunnels.ms/article'
 
   const fetchArticles = async (query = '') => {
     setLoading(true)
@@ -20,7 +20,7 @@ function Home() {
     let url = `${BASE_URL}/all`
     
     if (query) {
-      url = `${BASE_URL}/search?title=${query}`
+      url = `${BASE_URL}/search?article=${query}`
     }
 
     try {
@@ -28,15 +28,13 @@ function Home() {
       
       let fetchedArticles = [];
 
-      // PENTING: Server search Anda menggunakan properti "data"
       if (response.data && Array.isArray(response.data.data)) {
         fetchedArticles = response.data.data;
       } 
-      // Pengecekan untuk format /all (mungkin menggunakan "articles")
       else if (response.data && Array.isArray(response.data.articles)) {
         fetchedArticles = response.data.articles;
       } 
-      // Pengecekan untuk array langsung
+
       else if (Array.isArray(response.data)) {
         fetchedArticles = response.data;
       }
@@ -72,7 +70,7 @@ function Home() {
     <div className='min-h-lvh bg-gray-100'>
       
       <div className='h-lvh flex items-start justify-center flex-col font-bold text-5xl p-5 bg-gray-200 text-gray-500'>
-        <div className='neuro-in-b rounded-xl p-2 z-10 text-white h-full w-full flex items-center
+        <div className='neuro-in-b rounded-xl p-2 z-10 text-white h-full w-full flex text-center items-center
         flex-col relative justify-center'>
           <Link className='absolute neuro-b text-white top-6 right-8 p-2 rounded-md' to="/Profile"><FaUser size={40} color='white'/></Link>
           <Link className='absolute neuro-b text-white top-6 right-26 p-2 rounded-md' to="/AddArticle"><FaPlus size={40} color='white'/></Link>
