@@ -1,14 +1,14 @@
-import multer, { type Multer } from "multer"
+import multer from "multer"
 import { ErrorOutput } from "../util/Output.ts"
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
-        cb(null, 'public/images')
+        cb(null, 'public/images/article_image')
     },
     filename: (req, file, cb) => {
         const ext = file.originalname.split('.').pop()
         const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9)
-        const fileName = `blog-${uniqueSuffix}.${ext}`
+        const fileName = `article-${uniqueSuffix}.${ext}`
         cb(null, fileName)
     }
 })
@@ -21,7 +21,7 @@ const file_filter = (req: any, file: Express.Multer.File, cb: multer.FileFilterC
     }
 }
 
-export const upload = multer({
+export const upload_article = multer({
     storage: storage,
     fileFilter: file_filter,
     limits: {

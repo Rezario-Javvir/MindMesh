@@ -1,6 +1,29 @@
 import type { Request, Response, NextFunction } from "express"
+import type { AuthRequest } from "../../middleware/auth.middleware.ts"
+import { ErrorOutput } from "../../util/Output.ts"
 import * as ProfileService from "./profile_service.ts"
 import chalk from "chalk"
+
+export const my_profile_repo = async (req: AuthRequest, res: Response, next: NextFunction) => {
+    try {
+        if(!req.user) {
+            throw new ErrorOutput("Authentication required: User ID missing from token.", 401)
+        }
+
+        console.log(chalk.blueBright("Fetching my profile..."))
+
+        const my_profile = await ProfileService.my_profile_service()
+
+        console.log(chalk.greenBright("My profile fetched successfully"))
+        res.status(200).json({
+            status: "success",
+            data: my_profile
+        })
+    }
+    catch (error) {
+        next(error)
+    }
+}
 
 export const get_profile_id_controller = async (req: Request, res: Response, next: NextFunction) => {
     try {
@@ -12,7 +35,7 @@ export const get_profile_id_controller = async (req: Request, res: Response, nex
         const id = parseInt(req.params.id)
         const profile = await ProfileService.find_profile(id)
         
-        console.log(chalk.greenBright("Profile fetch successful"))
+        console.log(chalk.greenBright("Profile fetch successfully"))
         res.status(200).json({
             status: "success",
             data: profile
@@ -23,19 +46,27 @@ export const get_profile_id_controller = async (req: Request, res: Response, nex
     }
 }
 
-export const edit_profile_controller = async (req: Request, res: Response, next: NextFunction) => {
+export const edit_profile_controller = async (req: AuthRequest, res: Response, next: NextFunction) => {
     try {
+        if(!req.user) {
+            throw new ErrorOutput("Authentication required: User ID missing from token.", 401)
+        }
+
         console.log(chalk.blueBright("Editing profile..."))
         
-        const { id } = req.params
-        if(!id || isNaN(parseInt(id))) {
-            throw new Error("Profile ID is missing or invalid")
-        }
-        const { fullname, bio } = req.body
-        const profile_id = parseInt(id)
+        const { username, bio } = req.body
+        const user_id = req.user.id 
 
-        const updatedProfile = await ProfileService.edit_user_profile(profile_id, { fullname, bio })
-        console.log(chalk.greenBright("Profile edit successful"))
+        const file = (req.file as Express.Multer.File)?.filename
+        const updated_data: { username?: string, bio?: string, avatar?: string } = { username, bio }
+        
+        if (file) {
+            updated_data.avatar = file;
+            console.log("console.log('Avatar uploaded:', avatarFileName);")
+        }
+
+        const updatedProfile = await ProfileService.edit_user_profile(user_id, updated_data)
+        console.log(chalk.greenBright("Profile edit successfully"))
         res.status(200).json({
             status: "success",
             data: updatedProfile

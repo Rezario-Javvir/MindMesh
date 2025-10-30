@@ -17,18 +17,23 @@ export const protect = (req: AuthRequest, res: Response, next: NextFunction) => 
         token = req.headers.authorization.split(" ")[1]
     }
     if(!token) {
-        console.log(chalk.red("console.log('Access Denied: No token');"));
+        console.log(chalk.red("Access Denied: No token"));
         return next(new ErrorOutput("Access Denied. No token provided.", 401));
     }
 
     try {
         const JWT_SECRET = process.env.JWT_SECRET_TOKEN as string
+        if (!JWT_SECRET) {
+            throw new Error("Server configuration error: JWT_SECRET_TOKEN is not set.")
+        }
+
         const decoded = jwt.verify(token, JWT_SECRET) as { id: number, email: string }
 
         req.user = {
             id: decoded.id,
             email: decoded.email
         }
+        next()
     }
     catch (error) {
         console.log(chalk.red("console.log('Access Denied: Invalid token');"));

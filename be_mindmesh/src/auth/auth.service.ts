@@ -7,7 +7,7 @@ import nodemailer from "nodemailer"
 import chalk from 'chalk'
 
 export const register = async (username: string, email: string, raw_password: string) => {
-    const exist_user = await UserRepo.find_email_user(email)
+    const exist_user = await UserRepo.find_email_user_repo(email)
     if(exist_user) {
         throw new ErrorOutput("Email already exists", 409)
     }
@@ -17,12 +17,11 @@ export const register = async (username: string, email: string, raw_password: st
 
     const result = await prisma.user.create({
         data: {
-            username,
             email,
             password: hashed_pass,
             profile: {
                 create: {
-                    fullname: null,
+                    username: username,
                     bio: "Hello, I'm new in MindMesh",
                     avatar: null
                 }
@@ -40,26 +39,29 @@ export const register = async (username: string, email: string, raw_password: st
 }
 
 export const login = async (email: string, raw_password: string) => {
-    const user = await UserRepo.find_email_user(email)
+    const user = await UserRepo.find_email_user_repo(email)
     if(!user) {
         throw new ErrorOutput("Account not found", 404)
     }
 
     const JWT_SECRET = process.env.JWT_SECRET_TOKEN
+    if(!JWT_SECRET) {
+        throw new ErrorOutput("Server configuration error.", 500)
+    }
 
     const match_pass = await bcrypt.compare(raw_password, user.password)
     if(!match_pass) {
         throw new ErrorOutput("Invalid credentials", 401)
     }
 
-    const token = jwt.sign({ id: user.id, email: user.email }, JWT_SECRET!, { expiresIn: '2d' })
+    const token = jwt.sign({ id: user.id, email: user.email }, JWT_SECRET, { expiresIn: '2d' })
 
     const { password, ...userWithoutPass } = user
     return { user: userWithoutPass, token: token }
 }
 
 export const forgot_password = async (email: string) => {
-    const user = await UserRepo.find_email_user(email)
+    const user = await UserRepo.find_email_user_repo(email)
     if(!user) {
         console.log(chalk.greenBright("Forgot password request processed for non-existent user."))
         return
@@ -69,7 +71,7 @@ export const forgot_password = async (email: string) => {
     const token = jwt.sign({ id: user.id }, JWT_SECRET!, { expiresIn: '15m' })
     console.log(chalk.yellowBright.bold("DEBUG TOKEN:"), chalk.cyan(token))
 
-    const reset_link = ` http://localhost:3000/reset-password?token=${token}`
+    const reset_link = `http://localhost:3000/reset-password?token=${token}`
 
     const transporter = nodemailer.createTransport({
         service: 'gmail',
@@ -94,7 +96,7 @@ export const reset_password = async (token: string, new_password: string) => {
         const decoded = jwt.verify(token, JWT_SECRET as string) as { id: number }
         const user_id = decoded.id
 
-        const user = await UserRepo.find_user_id(user_id)
+        const user = await UserRepo.find_user_id_repo(user_id)
         if(!user) {
             throw new ErrorOutput("Invalid user associated with token.", 404)
         }
@@ -102,7 +104,7 @@ export const reset_password = async (token: string, new_password: string) => {
         const salt = 15
         const new_pass = await bcrypt.hash(new_password, salt)
 
-        await UserRepo.update_password(user_id, new_pass)
+        await UserRepo.update_password_repo(user_id, new_pass)
 
         return { message: "Password reset successful"}
     } 
