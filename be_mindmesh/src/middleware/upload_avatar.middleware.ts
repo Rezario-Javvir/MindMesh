@@ -15,7 +15,8 @@ const storage = multer.diskStorage({
         }
 
         const ext = file.originalname.split('.').pop()
-        const fileName = `avatar-${user_id}-${Date.now}.${ext}`
+        const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9)
+        const fileName = `avatar-${user_id}-${uniqueSuffix}.${ext}`
         cb(null, fileName)
     }
 })

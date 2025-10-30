@@ -10,9 +10,11 @@ export const my_profile_repo = async (req: AuthRequest, res: Response, next: Nex
             throw new ErrorOutput("Authentication required: User ID missing from token.", 401)
         }
 
+        const user_id = req.user?.id
+
         console.log(chalk.blueBright("Fetching my profile..."))
 
-        const my_profile = await ProfileService.my_profile_service()
+        const my_profile = await ProfileService.my_profile_service(user_id)
 
         console.log(chalk.greenBright("My profile fetched successfully"))
         res.status(200).json({
@@ -35,7 +37,7 @@ export const get_profile_id_controller = async (req: Request, res: Response, nex
         const id = parseInt(req.params.id)
         const profile = await ProfileService.find_profile(id)
         
-        console.log(chalk.greenBright("Profile fetch successfully"))
+        console.log(chalk.greenBright("Profile fetched successfully"))
         res.status(200).json({
             status: "success",
             data: profile
