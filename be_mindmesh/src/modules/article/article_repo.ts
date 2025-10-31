@@ -1,7 +1,7 @@
 import { prisma } from "../../config/prisma.ts"
 
 export const article_create_repo = async (
-    title: string, 
+    title: string,
     content: string,
     image: string,
     user_id: number,
@@ -54,7 +54,18 @@ export const article_detail_repo = async (id: number) => {
         where: { id },
         include: {
             user: {
-                select: { profile: true }
+                select: {
+                    profile: true
+                }
+            },
+            comment: {
+                include: {
+                    user: {
+                        select: {
+                            profile: true
+                        }
+                    }
+                }
             }
         }
     })
