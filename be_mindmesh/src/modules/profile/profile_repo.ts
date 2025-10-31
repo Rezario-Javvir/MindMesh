@@ -1,7 +1,8 @@
 import { prisma } from "../../config/prisma.ts"
 
-export const my_profile_repo = async () => {
-    return prisma.profile.findFirst({
+export const my_profile_repo = async (user_id: number) => {
+    return prisma.profile.findUnique({
+        where: { user_id },
         include: {
             user: {
                 include: {
@@ -18,6 +19,7 @@ export const find_id_profile_repo = async (id: number) => {
         include: {
             user: {
                 select: {
+                    email: true,
                     article: true
                 }
             }

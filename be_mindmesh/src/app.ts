@@ -43,6 +43,7 @@ app.use("/dev-check", checkRoute)
 app.use("/article", articleRoute)
 app.use("/category", categoryRoute)
 app.use("/comment", commentRoute)
+
 app.use(notFound)
 app.use(errorHandler)
 

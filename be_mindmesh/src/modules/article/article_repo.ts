@@ -49,7 +49,18 @@ export const find_article_repo = async (partialTitle: string) => {
     })
 }
 
-export const update_article_repo = async (id: number, data: any) => {
+export const article_detail_repo = async (id: number) => {
+    return prisma.article.findUnique({
+        where: { id },
+        include: {
+            user: {
+                select: { profile: true }
+            }
+        }
+    })
+}
+
+export const update_article_repo = async (id: number, data: { title: string, content: string, image: string }) => {
     return prisma.article.update({
         where: { id },
         data: data
