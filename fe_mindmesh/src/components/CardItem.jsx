@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router-dom' // Pastikan Link diimpor
+import { Link } from 'react-router-dom'
 import { FaUserCircle } from 'react-icons/fa'
 
 const API_DOMAIN = 'https://vfs90dhv-3000.asse.devtunnels.ms'; 
@@ -7,7 +7,6 @@ const API_DOMAIN = 'https://vfs90dhv-3000.asse.devtunnels.ms'; 
 const IMAGE_PATH_PREFIX = 'upload/article/';
 const AVATAR_PATH_PREFIX = 'upload/avatar/';
 
-// Fungsi untuk mendapatkan URL gambar
 const getImageUrl = (rawPath, prefix) => {
     if (!rawPath) return null;
 
@@ -32,14 +31,14 @@ function CardItem({ article }) {
     year: 'numeric',
   });
 
-    // LOGIKA GAMBAR ARTIKEL
+
   const rawImageName = article.image;
   const defaultArticleImage = 'https://via.placeholder.com/300x200?text=No+Image';
   const articleImageUrl = rawImageName
     ? getImageUrl(rawImageName, IMAGE_PATH_PREFIX)
     : defaultArticleImage;
 
-    // LOGIKA GAMBAR AVATAR
+
     const rawAvatarPath = article.user?.profile?.avatar || article.user?.avatar;
     const avatarUrl = rawAvatarPath ? getImageUrl(rawAvatarPath, AVATAR_PATH_PREFIX) : null;
     const username = article.user?.profile?.username || article.user?.username || 'Anonim';
@@ -66,7 +65,6 @@ function CardItem({ article }) {
           
           <div className='flex items-center justify-between text-xs md:text-sm mt-2 pt-2 border-t border-gray-300'>
             
-                {/* MODIFIKASI: Username menjadi Link */}
             <Link to={profileLink} className='flex items-center gap-1 font-semibold text-gray-600 hover:text-blue-600 z-20' onClick={(e) => e.stopPropagation()}>
                 {avatarUrl ? (
                     <img src={avatarUrl} alt={`${username}'s avatar`} className='w-5 h-5 rounded-full object-cover' />

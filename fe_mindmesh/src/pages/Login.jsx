@@ -43,7 +43,6 @@ function Login() {
 
       const { user, token } = response.data.data
 
-      // LANGKAH KRITIS 1: Simpan token dan data user ke localStorage
       localStorage.setItem('userToken', token)
       localStorage.setItem('userData', JSON.stringify(user))
       console.log('Token BARU Disimpan:', token.substring(0, 10) + '...');

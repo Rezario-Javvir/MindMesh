@@ -4,7 +4,6 @@ import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 const CREATE_ARTICLE_URL = 'https://vfs90dhv-3000.asse.devtunnels.ms/article/create';
-// MENGGUNAKAN ENDPOINT YANG BENAR: /category/all
 const CATEGORIES_URL = 'https://vfs90dhv-3000.asse.devtunnels.ms/category/all'; 
 
 function AddArticle() {
@@ -29,7 +28,6 @@ function AddArticle() {
     }, 3000);
   }, []);
 
-  // Fungsi fetchCategories yang disesuaikan untuk respons `/category/all`
   const fetchCategories = useCallback(async (token) => {
     if (!token) return;
 
@@ -40,13 +38,11 @@ function AddArticle() {
           'Authorization': `Bearer ${token}`,
         },
       });
-      
-      // KRITIS: Akses array kategori melalui response.data.data
+
       const data = response.data.data;
       
       if (Array.isArray(data) && data.length > 0) {
         setCategories(data);
-        // Set categoryId ke string kosong agar 'Select Category' terpilih
         setCategoryId(''); 
       } else {
         setCategories([]);
@@ -62,7 +58,7 @@ function AddArticle() {
   }, [showModal]);
 
 
-  // Efek untuk memuat Auth Data dan memicu fetchCategories
+
   useEffect(() => {
     const token = localStorage.getItem('userToken');
     const userDataString = localStorage.getItem('userData');
@@ -76,11 +72,10 @@ function AddArticle() {
     try {
       const userData = JSON.parse(userDataString);
       
-      // ATUR STATE PENTING
+
       setUserToken(token);
       setUserId(userData.id); 
-      
-      // Panggil fetchCategories setelah data Auth aman
+
       fetchCategories(token); 
 
     } catch (e) {
@@ -103,7 +98,7 @@ function AddArticle() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     
-    // CEK SEBELUM SUBMIT
+
     if (!userToken || !userId) {
       showModal('Authentication data missing. Please log in again.', 'error');
       return;
@@ -135,7 +130,7 @@ function AddArticle() {
       console.log('Article posted successfully:', response.data);
       showModal('Article posted successfully! Redirecting to Home.', 'success');
       
-      // Reset form setelah sukses
+
       setTitle('');
       setContent('');
       setMediaFile(null); 
@@ -152,7 +147,7 @@ function AddArticle() {
   };
 
   const ModalPopup = () => {
-    // ... (tetap sama) ...
+
     if (!modal.show) return null
 
     const isSuccess = modal.type === 'success'
