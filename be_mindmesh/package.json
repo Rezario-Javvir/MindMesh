@@ -35,7 +35,6 @@
     "@typescript/native-preview": "^7.0.0-dev.20251016.1",
     "prisma": "^6.17.0",
     "tsx": "^4.20.6",
-    "typescript": "^5.9.3",
-    "vitest": "^4.0.3"
+    "typescript": "^5.9.3"
   }
 }
