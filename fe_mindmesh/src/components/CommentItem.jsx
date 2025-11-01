@@ -11,7 +11,7 @@ const UserIcon = (props) => (
     </svg>
 );
 
-// Fungsi getImageUrl yang dibutuhkan oleh CommentItem
+
 const getImageUrl = (imagePath) => {
     if (!imagePath) return null;
     
@@ -30,14 +30,13 @@ function CommentItem({ comment }) {
         return <div className='p-3 bg-red-100 text-red-700 rounded-lg text-sm'>Comment data is invalid.</div>;
     }
 
-    // 1. Ambil data pengguna sesuai struktur JSON yang disajikan
+   
     const userProfile = comment.user?.profile;
     
     const creatorUsername = userProfile?.username || comment.user?.username || 'Anonymous User';
     const creatorUserId = userProfile?.user_id || comment.user?.user_id || comment.user_id;
     const rawAvatarPath = userProfile?.avatar;
-    
-    // 2. Gunakan getImageUrl untuk mendapatkan URL avatar
+
     const avatarUrl = rawAvatarPath ? getImageUrl(rawAvatarPath) : null;
     
     const profileLink = creatorUserId ? `/profile/user/${creatorUserId}` : '#'; 

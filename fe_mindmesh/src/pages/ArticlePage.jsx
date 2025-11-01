@@ -11,8 +11,8 @@ const API_DOMAIN = API_BASE_URL;
 
 const getImageUrl = (imagePath, isAvatar = false) => {
     if (!imagePath) {
-        return isAvatar 
-            ? null 
+        return isAvatar
+            ? null
             : 'https://via.placeholder.co/1000x400/18525D/FFFFFF?text=Image+Not+Available';
     }
     
@@ -55,17 +55,18 @@ const UserIcon = (props) => (
     </svg>
 );
 
+// Komponen CommentItem yang telah disisipkan kembali di file ini untuk kemudahan
 const CommentItem = ({ comment }) => {
     const rawAvatarPath = comment.user?.profile?.avatar || comment.user?.avatar;
     const avatarUrl = getImageUrl(rawAvatarPath, true);
     const creatorUsername = comment.user?.profile?.username || comment.user?.username || 'Anonymous User';
     const creatorUserId = comment.user?.id || comment.user?.user_id;
-    const profileLink = creatorUserId ? `/profile/user/${creatorUserId}` : '#'; 
+    const profileLink = creatorUserId ? `/profile/user/${creatorUserId}` : '#';
     
     const formattedDate = comment.created_at
         ? new Date(comment.created_at).toLocaleDateString('en-US', { day: 'numeric', month: 'short', year: 'numeric' })
         : 'Unknown Date';
-
+        
     return (
         <div className="bg-gray-50 p-4 rounded-xl border border-gray-200 shadow-sm">
             <div className="flex items-center mb-2">
@@ -145,6 +146,7 @@ function ArticlePage() {
         
         if (!userToken) {
             console.error("Failed to post comment: User not logged in.");
+            // Karena kita tidak boleh menggunakan alert, kita bisa menambahkan modal di sini jika perlu.
             return;
         }
 
@@ -155,14 +157,14 @@ function ArticlePage() {
         try {
             const config = {
                 headers: {
-                    Authorization: `Bearer ${userToken}`, 
+                    Authorization: `Bearer ${userToken}`,
                 }
             };
 
             const payload = { text: newCommentText };
             
             const response = await axios.post(
-                `${COMMENT_POST_URL}/${articleId}`, 
+                `${COMMENT_POST_URL}/${articleId}`,
                 payload,
                 config
             );
@@ -170,6 +172,7 @@ function ArticlePage() {
             if (response.data.status === 'created') {
                 const newCommentData = response.data.new_comment;
                 
+                // Pastikan newCommentData memiliki struktur yang benar
                 const updatedComments = article.comment ? [...article.comment, newCommentData] : [newCommentData];
 
                 setArticle(prevArticle => ({
@@ -182,8 +185,9 @@ function ArticlePage() {
 
         } catch (err) {
             const errorMessage = err.response?.data?.message || err.message;
-            alert(`Failed to post comment. Error: ${errorMessage}. Invalid or expired token.`);
+            // Mengganti alert dengan console.error dan instruksi
             console.error(`Failed to post comment. Error: ${errorMessage}. Invalid or expired token.`, err.response || err);
+            // Tambahkan mekanisme pemberitahuan di UI jika diperlukan (menggunakan modal atau toast)
         } finally {
             setIsPosting(false);
         }
@@ -212,9 +216,9 @@ function ArticlePage() {
     }
 
     const imageUrl = getImageUrl(article.image);
-    const creatorUserId = article.user?.id || article.user?.user_id; 
-    const profileLink = creatorUserId ? `/profile/user/${creatorUserId}` : '#'; 
-    const formattedDate = article.created_at 
+    const creatorUserId = article.user?.id || article.user?.user_id;
+    const profileLink = creatorUserId ? `/profile/user/${creatorUserId}` : '#';
+    const formattedDate = article.created_at 
         ? new Date(article.created_at).toLocaleDateString('en-US', { day: 'numeric', month: 'long', year: 'numeric' })
         : 'Unknown Date';
     const creatorUsername = article.user?.profile?.username || article.user?.username || 'Creator Username';
@@ -261,8 +265,15 @@ function ArticlePage() {
                     </span>
                 </div>
                 
-                <div className='prose max-w-none text-gray-800 leading-relaxed text-lg mb-10'>
-                    <p>{article.content ?? 'Content of the article will be displayed here.'}</p>
+                {/* PERUBAHAN KRITIS DI SINI:
+                    Menggunakan style={{ whiteSpace: 'pre-wrap' }} untuk memastikan 
+                    baris baru (\n) dari textarea dihormati dan ditampilkan sebagai paragraf terpisah.
+                */}
+                <div 
+                    className='text-gray-800 leading-relaxed text-lg mb-10 p-4 border rounded-lg bg-gray-50'
+                    style={{ whiteSpace: 'pre-wrap' }}
+                >
+                    {article.content ?? 'Content of the article will be displayed here.'}
                 </div>
 
                 <div className='mt-10 pt-8 border-t border-gray-200'>
