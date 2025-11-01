@@ -57,10 +57,12 @@ model category {
 }
 
 model Comment {
-  id   Int     @id @default(autoincrement())
-  text String? @db.Text
+  id         Int      @id @default(autoincrement())
+  text       String?  @db.Text
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt()
 
-  user_id Int
+  user_id    Int
   article_id Int
 
   user    User    @relation(fields: [user_id], references: [id])

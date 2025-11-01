@@ -67,11 +67,20 @@ export const forgot_password = async (email: string) => {
         return
     }
 
-    const JWT_SECRET = process.env.JWT_SECRET_TOKEN
-    const token = jwt.sign({ id: user.id }, JWT_SECRET!, { expiresIn: '15m' })
+    const JWT_SECRET = process.env.JWT_SECRET_TOKEN as string
+    if(!JWT_SECRET) {
+        throw new ErrorOutput("Server configuration error: JWT secret not set.", 500)
+    }
+
+    const token = jwt.sign({ id: user.id }, JWT_SECRET, { expiresIn: '15m' })
     console.log(chalk.yellowBright.bold("DEBUG TOKEN:"), chalk.cyan(token))
 
     const reset_link = `https://vfs90dhv-3000.asse.devtunnels.ms/reset-password?token=${token}`
+
+    if (process.env.NODE_ENV === 'development') {
+        console.log(chalk.yellowBright.bold("DEBUG TOKEN:"), chalk.cyan(token))
+        return { token, email_sent: true }; 
+    }
 
     const transporter = nodemailer.createTransport({
         service: 'gmail',
@@ -87,12 +96,13 @@ export const forgot_password = async (email: string) => {
         subject: "Password Reset Request",
         html: `<p>Click this link to reset your password: <a href="${reset_link}">${reset_link}</a></p>`
     })
-    console.log(chalk.greenBright("Password reset email sent successfully."))
+    console.log(chalk.greenBright("Reset password sent successfully."))
+    return { email_sent: true }
 }
 
 export const reset_password = async (token: string, new_password: string) => {
     try {
-        const JWT_SECRET = process.env.JWT_SECRET_TOKEN
+        const JWT_SECRET = process.env.JWT_SECRET_TOKEN as string
         const decoded = jwt.verify(token, JWT_SECRET as string) as { id: number }
         const user_id = decoded.id
 
@@ -104,6 +114,7 @@ export const reset_password = async (token: string, new_password: string) => {
         const salt = 15
         const new_pass = await bcrypt.hash(new_password, salt)
 
+        console.log(chalk.greenBright(`Password reset for user ID: ${user_id}`))
         await UserRepo.update_password_repo(user_id, new_pass)
 
         return { message: "Password reset successful"}

@@ -49,20 +49,27 @@ export const controller_login = async (req: Request, res: Response, next: NextFu
 
 export const controller_forgot_password = async (req: Request, res: Response, next: NextFunction) => {
     try {
-        console.log(chalk.greenBright("Processing forgot password request..."))
+        console.log(chalk.blueBright("Processing forgot password request..."))
 
         const { email } = req.body
         if(!email) {
             throw new ErrorOutput("Email is required", 400)
         }
 
-        await AuthService.forgot_password(email)
+        const result = await AuthService.forgot_password(email)
 
         console.log(chalk.greenBright("Forgot password request processed"))
-        res.status(200).json({
+        
+        const response_data = {
             status: "success",
             message: "If the email is registered, a password reset link has been sent."
-        })
+        }
+
+        if(result && result.token) {
+            Object.assign(response_data, { debug_token: result.token })
+        }
+
+        res.status(200).json(response_data)
     } 
     catch (error) {
         next(error)
@@ -74,6 +81,10 @@ export const controller_reset_password = async (req: Request, res: Response, nex
         console.log(chalk.blueBright("Resetting password..."))
 
         const { token } = req.query
+        if(!token) {
+            throw new ErrorOutput("Token is required", 400)
+        }
+
         const { new_password } = req.body
         if(!new_password) {
             throw new ErrorOutput("All fields are required", 400)
