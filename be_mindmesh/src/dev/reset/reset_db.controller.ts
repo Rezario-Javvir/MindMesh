@@ -9,8 +9,7 @@ export const reset_db = async (req: Request, res: Response, next: NextFunction) 
         'Comment',
         'Article',
         'Profile',
-        'User',
-        'category'
+        'User'
     ]
 
     try {
