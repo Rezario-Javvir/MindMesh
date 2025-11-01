@@ -12,8 +12,8 @@ export const create_comment_controller = async (req: AuthRequest, res: Response,
 
         const user_id = req.user.id
 
-        const { article_id } = req.params
-        if(!article_id) {
+        const { id } = req.params
+        if(!id || isNaN(parseInt(id))) {
             console.log(chalk.redBright("Article ID is missing in the URL."))
             throw new ErrorOutput("Article ID is missing in the URL.", 400)
         }
@@ -26,7 +26,7 @@ export const create_comment_controller = async (req: AuthRequest, res: Response,
 
         console.log(chalk.blueBright("Creating new comment"))
 
-        const parsed_article_id = parseInt(article_id as string)
+        const parsed_article_id = parseInt(id as string)
         if(isNaN(parsed_article_id)) {
             console.log("Invalid Article ID format in URL.")
             throw new ErrorOutput("Invalid Article ID format in URL.", 400)
