@@ -73,7 +73,6 @@ export const forgot_password = async (email: string) => {
     }
 
     const token = jwt.sign({ id: user.id }, JWT_SECRET, { expiresIn: '15m' })
-    console.log(chalk.yellowBright.bold("DEBUG TOKEN:"), chalk.cyan(token))
 
     const reset_link = `https://vfs90dhv-3000.asse.devtunnels.ms/reset-password?token=${token}`
 
