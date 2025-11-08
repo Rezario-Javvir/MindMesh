@@ -1,6 +1,6 @@
 import { Router } from "express"
-import { create_comment_controller, get_command_by_id_article_controller } from "./comment_controller.ts"
-import { protect } from "../../middleware/auth.middleware.ts"
+import { create_comment_controller, get_command_by_id_article_controller } from "./comment_controller"
+import { protect } from "../../middleware/auth.middleware"
 
 const router = Router()
 

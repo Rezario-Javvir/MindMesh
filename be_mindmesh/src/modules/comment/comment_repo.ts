@@ -1,4 +1,4 @@
-import { prisma } from "../../config/prisma.ts"
+import { prisma } from "../../config/prisma"
 
 export const create_comment_repo = (data: { text: string, user_id: number, article_id: number }) => {
     return prisma.comment.create({

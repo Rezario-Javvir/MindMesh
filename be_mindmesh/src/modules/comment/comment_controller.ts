@@ -1,8 +1,8 @@
 import type { Request, Response, NextFunction } from "express"
 import chalk from "chalk"
-import * as CommentService from "./comment_service.ts"
-import { ErrorOutput } from "../../util/Output.ts"
-import type { AuthRequest } from "../../middleware/auth.middleware.ts"
+import * as CommentService from "./comment_service"
+import { ErrorOutput } from "../../util/Output"
+import type { AuthRequest } from "../../middleware/auth.middleware"
 
 export const create_comment_controller = async (req: AuthRequest, res: Response, next: NextFunction) => {
     try {
