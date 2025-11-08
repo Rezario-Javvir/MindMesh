@@ -1,17 +1,17 @@
 import express from 'express'
 import cors from "cors"
 import path from 'path'
-import { errorHandler } from './middleware/error.middleware.ts'
-import { notFound } from './middleware/notFound.middleware.ts'
+import { errorHandler } from './middleware/error.middleware'
+import { notFound } from './middleware/notFound.middleware'
 import { fileURLToPath } from 'url'
-import authRoute from "./auth/auth.route.ts"
-import userRoute from "./modules/user/user_route.ts"
-import profileRoute from "./modules/profile/profile_route.ts"
-import resetRoute from "./dev/reset/reset_db.route.ts"
-import checkRoute from "./dev/check/check_db.route.ts"
-import articleRoute from "./modules/article/article_route.ts"
-import categoryRoute from "./modules/category/category_route.ts"
-import commentRoute from "./modules/comment/comment_route.ts"
+import authRoute from "./auth/auth.route"
+import userRoute from "./modules/user/user_route"
+import profileRoute from "./modules/profile/profile_route"
+import resetRoute from "./dev/reset/reset_db.route"
+import checkRoute from "./dev/check/check_db.route"
+import articleRoute from "./modules/article/article_route"
+import categoryRoute from "./modules/category/category_route"
+import commentRoute from "./modules/comment/comment_route"
 
 const app = express()
 
