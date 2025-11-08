@@ -1,4 +1,4 @@
-import { prisma } from "../../config/prisma.ts"
+import { prisma } from "../../config/prisma"
 
 export const my_profile_repo = async (user_id: number) => {
     return prisma.profile.findUnique({

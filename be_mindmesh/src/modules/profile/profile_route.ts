@@ -3,9 +3,9 @@ import {
     get_profile_id_controller, 
     edit_profile_controller,
     my_profile_repo
-} from "./profile_controller.ts"
-import { protect } from "../../middleware/auth.middleware.ts"
-import { upload_avatar } from "../../middleware/upload_avatar.middleware.ts"
+} from "./profile_controller"
+import { protect } from "../../middleware/auth.middleware"
+import { upload_avatar } from "../../middleware/upload_avatar.middleware"
 
 const router = Router()
 

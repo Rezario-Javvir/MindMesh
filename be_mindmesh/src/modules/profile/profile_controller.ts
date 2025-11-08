@@ -1,7 +1,7 @@
 import type { Request, Response, NextFunction } from "express"
-import type { AuthRequest } from "../../middleware/auth.middleware.ts"
-import { ErrorOutput } from "../../util/Output.ts"
-import * as ProfileService from "./profile_service.ts"
+import type { AuthRequest } from "../../middleware/auth.middleware"
+import { ErrorOutput } from "../../util/Output"
+import * as ProfileService from "./profile_service"
 import chalk from "chalk"
 
 export const my_profile_repo = async (req: AuthRequest, res: Response, next: NextFunction) => {
