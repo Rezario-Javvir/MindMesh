@@ -1,5 +1,5 @@
 import type { Request, Response, NextFunction } from "express"
-import * as UserService from "./user_service.ts"
+import * as UserService from "./user_service"
 // import { ErrorOutput } from "../../util/Output.ts"
 import chalk from "chalk"
 

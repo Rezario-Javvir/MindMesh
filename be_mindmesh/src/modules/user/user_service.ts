@@ -1,4 +1,4 @@
-import * as UserRepo from './user_repo.ts'
+import * as UserRepo from './user_repo'
 
 // export const find_name = async (partial_name: string): Promise<any> => {
 //     const name_user = await UserRepo.find_name_user(partial_name)
