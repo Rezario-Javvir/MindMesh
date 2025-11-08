@@ -1,4 +1,4 @@
-import { prisma } from "../../config/prisma.ts"
+import { prisma } from "../../config/prisma"
 
 export const category_create_repo = async () => {
     return prisma.category.createMany({

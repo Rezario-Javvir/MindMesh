@@ -1,5 +1,5 @@
 import type { Request, Response, NextFunction } from "express"
-import * as CategoryService from "./category_service.ts"
+import * as CategoryService from "./category_service"
 import chalk from "chalk"
 
 export const add_category_controller = async (req: Request, res: Response, next: NextFunction) => {
