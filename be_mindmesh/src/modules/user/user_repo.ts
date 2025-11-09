@@ -1,4 +1,4 @@
-import { prisma } from "../../config/prisma.ts"
+import { prisma } from "../../config/prisma"
 
 // export const find_name_user = async (partialName: string) => {
 //     return prisma.user.findMany({

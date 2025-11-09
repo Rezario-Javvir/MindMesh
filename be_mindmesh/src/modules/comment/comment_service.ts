@@ -1,5 +1,5 @@
-import * as CommentRepo from "./comment_repo.ts"
-import { ErrorOutput } from "../../util/Output.ts"
+import * as CommentRepo from "./comment_repo"
+import { ErrorOutput } from "../../util/Output"
 
 export const create_comment_service = async (data: { text: string, user_id: number, article_id: number }) => {
     const comment = await CommentRepo.create_comment_repo(data)
